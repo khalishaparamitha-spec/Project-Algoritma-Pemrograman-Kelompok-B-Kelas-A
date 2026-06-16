@@ -49,4 +49,3 @@ elif dB < dA and dB < dC:
 
 elif dC < dA and dC < dB:
     print("Titik U masuk cluster C")
- C")
