@@ -1,35 +1,35 @@
 import math
 
-def hitung_interval_konfidensi():
-    print("=== Program 6: Interval Konfidensi Proporsi Populasi ===\n")
-
-    p_hat = float(input("Masukkan proporsi sampel (p̂): "))
-
+def interval_konfidensi(p_hat, n, alpha):
+    
+    # validasi proporsi
     if p_hat < 0 or p_hat > 1:
-        print("Error: Proporsi yang dimasukkan tidak valid! Nilai harus berada di antara 0 dan 1.")
+        print("error: proporsi harus berada pada rentang 0 dan 1")
         return
-
-    n = int(input("Masukkan ukuran sampel (n): "))
-
-    alpha = float(input("Masukkan tingkat alpha (0.05 atau 0.10): "))
-
-    if alpha not in [0.05, 0.10]:
-        print("Error: Nilai alpha harus 0.05 atau 0.10")
+    
+    # validasi alpha
+    if alpha == 0.10:
+        z = 1.645
+    elif alpha == 0.05:
+        z = 1.96
+    else:
+        print("error: nilai alpha harus 0.05 atau 0.10")
         return
-
-    z_dict = {0.10: 1.645, 0.05: 1.96}
-    z = z_dict[alpha]
-
+    
+    # menghitung margin of error
     margin = z * math.sqrt((p_hat * (1 - p_hat)) / n)
+    
+    # menghitung interval konfidensi
     batas_bawah = p_hat - margin
     batas_atas  = p_hat + margin
+    
+    print("batas bawah =", batas_bawah)
+    print("batas atas =", batas_atas)
+    print("interval konfidensi = (", batas_bawah, ",", batas_atas, ")")
 
-    print(f"\n=== Hasil ===")
-    print(f"Proporsi sampel (p̂)  : {p_hat}")
-    print(f"Ukuran sampel (n)     : {n}")
-    print(f"Tingkat kepercayaan   : {int((1 - alpha) * 100)}% (α = {alpha}, z = {z})")
-    print(f"Margin of Error       : {margin:.4f}")
-    print(f"Interval Konfidensi   : ({batas_bawah:.4f}, {batas_atas:.4f})")
-    print(f"\n→ {batas_bawah:.4f} < p < {batas_atas:.4f}")
+# input manual
+p_hat = float(input("Masukkan proporsi sampel (p_hat): "))
+n     = int(input("Masukkan ukuran sampel (n): "))
+alpha = float(input("Masukkan nilai alpha (0.05 atau 0.10): "))
 
-hitung_interval_konfidensi()
+interval_konfidensi(p_hat, n, alpha)
