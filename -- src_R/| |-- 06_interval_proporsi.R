@@ -1,1 +1,47 @@
+interval_konfidensi<-function(p_topi, n, alpha){
+  
+#validasi proporsi
+if(p_topi<0||p_topi>1){
+  cat("error: proporsi harus berada pada rentang 0 dan 1.\n")
+  return()
+}
 
+#validasi alpha
+if(alpha == 0.10){
+  z<-1.645
+} else if(alpha == 0.05){
+  z<-1.96
+} else{
+  cat("error: nilai alpha harus 0.05 atau 0.10.\n")
+  return()
+}
+
+#menghitung margin of error
+margin_error<-z*sqrt((p_topi*(1-p_topi))/n)
+
+#menghitung interval konnfidensi
+batas_bawah<-p_topi - margin_error
+batas_atas<-p_topi + margin_error
+
+cat("batas bawah =",batas_bawah,"\n")
+cat("batas atas =",batas_atas,"\n")
+cat("interval konfidensi =(",batas_bawah,",",batas_atas,")\n")
+}
+
+#kondisi 1
+p_topi<-0.75
+n<-100
+alpha<-0.05
+interval_konfidensi(p_topi,n,alpha)
+
+#kondisi 2
+p_topi<-1.3
+n<-150
+alpha<-0.1
+interval_konfidensi(p_topi,n,alpha)
+
+#kondisi 3
+p_topi<-0.45
+n<-200
+alpha<-0.2
+interval_konfidensi(p_topi,n,alpha)
