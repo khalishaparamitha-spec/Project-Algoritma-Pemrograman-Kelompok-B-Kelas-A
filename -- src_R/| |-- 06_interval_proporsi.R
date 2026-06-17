@@ -28,20 +28,9 @@ cat("batas atas =",batas_atas,"\n")
 cat("interval konfidensi =(",batas_bawah,",",batas_atas,")\n")
 }
 
-#kondisi 1
-p_topi<-0.75
-n<-100
-alpha<-0.05
-interval_konfidensi(p_topi,n,alpha)
+#program utama
+p_topi<-as.numeric(readline("Masukkan proporsi sampel(p_hat):"))
+n<-as.numeric(readline("Masukkan ukuran sampel(n):"))
+alpha<-as.numeric(readline("Masukkan alpha (0.05 atau 0.10):"))
 
-#kondisi 2
-p_topi<-1.3
-n<-150
-alpha<-0.1
-interval_konfidensi(p_topi,n,alpha)
-
-#kondisi 3
-p_topi<-0.45
-n<-200
-alpha<-0.2
 interval_konfidensi(p_topi,n,alpha)
