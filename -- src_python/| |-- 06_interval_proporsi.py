@@ -11,20 +11,14 @@ def hitung_interval_konfidensi():
 
     n = int(input("Masukkan ukuran sampel (n): "))
 
-    print("Pilih tingkat kepercayaan (α):")
-    print("  1. α = 10% (z = 1.645)")
-    print("  2. α = 5%  (z = 1.96)")
-    pilihan = input("Masukkan pilihan (1/2): ")
+    alpha = float(input("Masukkan tingkat alpha (0.05 atau 0.10): "))
 
-    if pilihan == "1":
-        alpha = 0.10
-        z = 1.645
-    elif pilihan == "2":
-        alpha = 0.05
-        z = 1.96
-    else:
-        print("Error: Pilihan tidak valid!")
+    if alpha not in [0.05, 0.10]:
+        print("Error: Nilai alpha harus 0.05 atau 0.10")
         return
+
+    z_dict = {0.10: 1.645, 0.05: 1.96}
+    z = z_dict[alpha]
 
     margin = z * math.sqrt((p_hat * (1 - p_hat)) / n)
     batas_bawah = p_hat - margin
