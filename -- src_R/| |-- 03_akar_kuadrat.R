@@ -15,7 +15,7 @@ hitung_akar <- function(a, b, c) {
   } else {
     real <- -b / (2*a)
     imaj <- sqrt(abs(diskriminan)) / (2*a)
-    cat("Persamaan Memiliki Akar-Akar Imajiner:\n")
+    cat("Persamaan Akar-Akar Imajiner:\n")
     cat("x1 =", sprintf("%.3f", real), "+", sprintf("%.3f", imaj), "i\n")
     cat("x2 =", sprintf("%.3f", real), "-", sprintf("%.3f", imaj), "i\n")
   }
