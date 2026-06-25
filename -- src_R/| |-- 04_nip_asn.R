@@ -10,7 +10,7 @@ tanggal <- substr(nip, 7, 8)
 tanggal_angka <- as.numeric(tanggal)
 tahun_angka <- as.numeric(tahun)
 
-#Struktur percabangan if-else bertingkat untuk menentukan nama bulan
+#Struktur percabangan if-else bertingkat untuk menentukan nama bulan dan batas tanggal
 if (kode == "01") {
   bulan_nama <- "Januari"; hari_maks <- 31
 } else if (kode == "02") {
@@ -45,8 +45,11 @@ if (kode == "01") {
   hari_maks <- 0
 }
 
+#Validasi bulan apakah sudah sesuai berdasarkan batas bulan
 #Validasi tanggal berdasarkan batas hari_maks dari bulan
-if (is.na(tanggal_angka)||tanggal_angka < 1||tanggal_angka > hari_maks){
+if (bulan_nama == "Bulan tidak valid"){
+  tanggal_angka <- "Abaikan pengecekan"
+} else if (is.na(tanggal_angka)||tanggal_angka < 1||tanggal_angka > hari_maks){
   tanggal_angka <- "Tanggal tidak valid"
 } else {
   tanggal_angka <- tanggal 
@@ -54,4 +57,10 @@ if (is.na(tanggal_angka)||tanggal_angka < 1||tanggal_angka > hari_maks){
 
 
 #Menampilkan hasil akhir
-cat("Tanggal lahir ASN:", tanggal_angka, bulan_nama, tahun, "\n")
+if (tanggal_angka == "Tanggal tidak valid"){
+  cat("Tanggal tidak valid\n")
+} else if (bulan_nama == "Bulan tidak valid"){
+  cat("Bulan tidak valid\n")
+} else {
+  cat("Tanggal lahir ASN:", tanggal_angka, bulan_nama, tahun, "\n")
+}
