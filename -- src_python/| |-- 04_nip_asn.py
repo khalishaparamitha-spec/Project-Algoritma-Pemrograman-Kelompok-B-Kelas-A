@@ -6,7 +6,7 @@ tahun = nip[0:4]
 bulan = nip[4:6]
 tanggal = nip[6:8]
 
-#Mengubah ke integer 
+#Mengubah ke integer
 tanggal_angka = int(tanggal)
 tahun_angka = int(tahun)
 
@@ -16,7 +16,7 @@ if bulan == "01":
     hari_maks = 31
 elif bulan == "02":
     nama_bulan = "Februari"
-    if (tanggal_angka % 4 == 0 and tahun_angka % 100 != 0 ) or (tahun_angka % 400 == 0):
+    if (tahun_angka % 4 == 0 and tahun_angka % 100 != 0 ) or (tahun_angka % 400 == 0):
       hari_maks = 29
     else:
       hari_maks = 28
@@ -53,12 +53,20 @@ elif bulan == "12":
 else:
     nama_bulan = "Bulan tidak valid"
     hari_maks = 0
-  
+
+# Validasi apakah bulan berada di rentang yang sah
 # Validasi apakah tanggal berada di rentang yang sah sesuai bulannya
-if tanggal_angka < 1 or tanggal_angka > hari_maks:
+if nama_bulan == "Bulan tidak valid":
+  tanggal_angka = "Abaikan"
+elif tanggal_angka < 1 or tanggal_angka > hari_maks:
     tanggal_status = "Tanggal tidak valid"
 else:
     tanggal_status = tanggal
 
 #Menampilkan hasil akhir
-print(f"Tanggal lahir ASN: {tanggal_status} {nama_bulan} {tahun}")
+if nama_bulan == "Bulan tidak valid":
+  print("Bulan tidak valid")
+elif tanggal_status == "Tanggal tidak valid":
+  print("Tanggal tidak valid")
+else:
+  print(f"Tanggal lahir ASN: {tanggal_status} {nama_bulan} {tahun}")
